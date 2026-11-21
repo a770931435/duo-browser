@@ -1,0 +1,23 @@
+.gradle/
+.kotlin/
+build/
+# pdf.js 本身也有一個 build 資料夾（閱讀器程式），要放進版本控制
+!app/src/main/assets/pdfjs/build/
+local.properties
+*.iml
+.idea/
+.claude/
+dist/
+
+# 正式版簽章金鑰與密碼：絕對不要上傳或公開，但一定要另外備份
+release/
+*.jks
+*.keystore
+keystore.properties
+
+# 商品頁素材（影片、截圖、草稿）：檔案很大，不放進版本控制
+store/
+
+# 建置產物
+*.apk
+*.aab

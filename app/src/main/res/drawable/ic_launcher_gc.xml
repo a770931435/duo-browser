@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 自動產生（tools/gen_icons.py）：gc 配色的 App 圖示 -->
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@drawable/ic_launcher_bg_gc" />
+    <foreground android:drawable="@drawable/ic_launcher_fg_gc" />
+    <monochrome android:drawable="@drawable/ic_launcher_mono" />
+</adaptive-icon>

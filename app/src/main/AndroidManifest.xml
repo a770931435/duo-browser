@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+    <uses-feature android:name="android.hardware.gamepad" android:required="false" />
+
+    <!-- allowBackup=false：歷史紀錄、書籤、Cookie 只留在這台裝置，不被系統備份帶走（和「關於」頁的隱私說明一致） -->
+    <application
+        android:allowBackup="false"
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen"
+        android:usesCleartextTraffic="true">
+
+        <!-- 入口跳板：在點擊的螢幕開啟瀏覽器畫面，本身不顯示、不留在最近使用 -->
+        <activity
+            android:name=".MainActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:noHistory="true"
+            android:taskAffinity=""
+            android:theme="@android:style/Theme.NoDisplay">
+            <!-- 桌面圖示不在這裡：見下面五個 activity-alias（每種機身配色一個，同時只開一個） -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+            </intent-filter>
+            <!-- 從檔案管理員用「雙屏瀏覽器」開啟 PDF -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="content" />
+                <data android:mimeType="application/pdf" />
+            </intent-filter>
+        </activity>
+
+        <!--
+          桌面圖示：五種機身配色各一個入口，換主題時只開啟對應的那個（IconSwitcher）。
+          預設是透紫。名稱固定，不要改（改了使用者桌面上的圖示會不見）。
+        -->
+        <activity-alias android:name=".LauncherPurple" android:targetActivity=".MainActivity"
+            android:icon="@drawable/ic_launcher_purple" android:label="@string/app_name"
+            android:exported="true" android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias android:name=".LauncherBlack" android:targetActivity=".MainActivity"
+            android:icon="@drawable/ic_launcher_black" android:label="@string/app_name"
+            android:exported="true" android:enabled="false">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias android:name=".LauncherBit16" android:targetActivity=".MainActivity"
+            android:icon="@drawable/ic_launcher_bit16" android:label="@string/app_name"
+            android:exported="true" android:enabled="false">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias android:name=".LauncherGc" android:targetActivity=".MainActivity"
+            android:icon="@drawable/ic_launcher_gc" android:label="@string/app_name"
+            android:exported="true" android:enabled="false">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias android:name=".LauncherIce" android:targetActivity=".MainActivity"
+            android:icon="@drawable/ic_launcher_ice" android:label="@string/app_name"
+            android:exported="true" android:enabled="false">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <!-- 每個實體螢幕各一個（各自的 task），一個回桌面不影響另一個 -->
+        <activity
+            android:name=".ScreenActivity"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboard|keyboardHidden|navigation|uiMode|density|fontScale"
+            android:exported="false"
+            android:resizeableActivity="true"
+            android:screenOrientation="landscape"
+            android:taskAffinity="${applicationId}.screen"
+            android:windowSoftInputMode="adjustNothing" />
+    </application>
+</manifest>

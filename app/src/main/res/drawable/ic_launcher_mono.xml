@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 單色主題圖示（Android 13 的主題色圖示）：兩個螢幕外框＋跨過轉軸的地球 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+  <group android:scaleX="0.8" android:scaleY="0.8" android:pivotX="54" android:pivotY="55">
+    <path android:strokeColor="#FFFFFFFF" android:strokeWidth="2.2" android:fillColor="#00000000"
+        android:pathData="M30,23h48a5,5 0,0 1,5 5v20a5,5 0,0 1,-5 5h-48a5,5 0,0 1,-5 -5v-20a5,5 0,0 1,5 -5zM33,56.5h42a5,5 0,0 1,5 5v20.5a5,5 0,0 1,-5 5h-42a5,5 0,0 1,-5 -5v-20.5a5,5 0,0 1,5 -5z" />
+    <group>
+        <clip-path android:pathData="M29,26.5h50v23h-50zM35.5,60h37v18.5h-37z" />
+        <path android:strokeColor="#FFFFFFFF" android:strokeWidth="2" android:fillColor="#00000000"
+            android:pathData="M54,54m-19,0a19,19 0,1 1,38 0a19,19 0,1 1,-38 0M54,54m-8,0a8,19 0,1 1,16 0a8,19 0,1 1,-16 0M38.5,43.5h31M38.5,64.5h31" />
+    </group>
+  </group>
+</vector>
