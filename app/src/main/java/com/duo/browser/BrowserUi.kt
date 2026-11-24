@@ -2430,8 +2430,8 @@ class BrowserUi(
                 }
                 val tips = card()
                 row(tips, "up", L.t("把網頁往上推", "把网页往上推", "Push the page up"),
-                    L.t("捲到底後繼續往下捲，被轉軸切到的內容會移到上屏", "滚到底后继续往下滚，被转轴切到的内容会移到上屏",
-                        "At the end of a page, keep scrolling to move content split by the hinge to the top screen"))
+                    L.t("固定頁面可從上屏往上滑，移開被轉軸切到的內容", "固定页面可从上屏往上滑，移开被转轴挡住的内容",
+                        "Swipe up on the top screen to move a fixed page away from the hinge"))
                 row(tips, "hinge", L.t("下屏顯示模式", "下屏显示模式", "Bottom screen mode"), bottomModeTip())
             }
             2 -> {
