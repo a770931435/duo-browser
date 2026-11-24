@@ -144,7 +144,7 @@ class BrowserUi(
 
     private enum class ListMode { HOME, BOOKMARKS, SETTINGS, SCRIPTS, HISTORY }
     private var listMode = ListMode.HOME
-
+    private var desktopModeToggle: ToggleView? = null
 
     private var scrollToMode = false
 
@@ -803,6 +803,13 @@ class BrowserUi(
         urlEdit.text = shown
         refreshIncognitoLook()
         refreshBookmarkState()
+        onDesktopModeChanged()
+    }
+
+    fun onDesktopModeChanged() {
+        val toggle = desktopModeToggle ?: return
+        val on = Session.browser?.isDesktop ?: return
+        if (toggle.on != on) toggle.animateTo(on)
     }
 
     private val curIncognito: Boolean get() = Session.browser?.let { it.tabs.isNotEmpty() && it.tab.incognito } == true
@@ -1250,6 +1257,7 @@ class BrowserUi(
     /** 換頁：清空清單、切頁籤、捲到頂端。 */
     private fun beginPage(mode: ListMode, seg: Int) {
         listMode = mode
+        desktopModeToggle = null
         listBox.removeAllViews()
         setSegment(seg)
         scrollListToTop()
@@ -1897,9 +1905,10 @@ class BrowserUi(
                 if (panel.visibility == View.VISIBLE && listMode == ListMode.SETTINGS) showSettings()
             }
         })
-        val desk = Session.browser?.isDesktop ?: p.desktop
-        toggleRow(gen, "desktop", L.t("這個網站用電腦版", "这个网站用电脑版", "Desktop site here"),
-            L.t("每個網站分開記住", "每个网站分开记住", "Remembered per site"), desk) {
+        val desktopToggle = ToggleView(ctx, Session.browser?.isDesktop ?: p.desktop)
+        desktopModeToggle = desktopToggle
+        row(gen, "desktop", L.t("這個網站用電腦版", "这个网站用电脑版", "Desktop site here"),
+            L.t("每個網站分開記住", "每个网站分开记住", "Remembered per site"), trailing = desktopToggle) {
             Session.browser?.let { it.setDesktop(!it.isDesktop) }
         }
         valueRow(gen, "width", L.t("電腦版版面寬度", "电脑版页面宽度", "Desktop layout width"), null, { "${p.desktopWidth}px" },
